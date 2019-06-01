@@ -7,10 +7,10 @@ from tkinter import *
 from threading import Thread
 
 def click_hack():
-    pyautogui.click(button='left', clicks=50, interval=0.05)
+    pyautogui.click(button='left', clicks=50, interval=0.05) #Macro func.
 
 
-class Uyg():
+class Uyg(): #GUI interface 
     def __init__(self):
         self.state = None
         self.win = Tk()
@@ -29,15 +29,15 @@ class Uyg():
     def handle_key2(self):
         while (self.state == False):
             
-            if (win32api.GetAsyncKeyState(0x5A) < 0):
+            if (win32api.GetAsyncKeyState(0x5A) < 0): #  wait z key to stop macro 
                 self.seT()
                 break
             else:
                 continue
             time.sleep(0.01)
-    def handle_key(self):
+    def handle_key(self): # wait alt key to start macro
         while (self.state==True):
-            print("state key alt değil")
+
             print(win32api.GetAsyncKeyState(0x12))
             if (win32api.GetAsyncKeyState(0x12) < 0 ):
                 
@@ -51,9 +51,8 @@ class Uyg():
         self.win.mainloop()
         self.state = None
     
-    def seT(self): 
+    def seT(self): #enabutton func 
         self.state = True
-        print("seT e gelnidi enabled")
         self.label['fg'] = "red"
         self.label['text'] = "Started!!! Enjoy :)"
         self.label['fg'] = "black"
@@ -64,7 +63,7 @@ class Uyg():
         t1.start()
         print("t1 handle başla")
         
-    def geT(self):
+    def geT(self):# disbutton func.
         
         print("geT e gelindi")
         self.label['text'] = "Stopped!!!"
@@ -75,7 +74,7 @@ class Uyg():
         t3.start()
        
         
-    def handle(self):
+    def handle(self):#handle mouse state and run click_hack()
         state_left = win32api.GetKeyState(0x01)  
         state_right = win32api.GetKeyState(0x02)  
 
@@ -104,15 +103,12 @@ class Uyg():
 
         
 
-def hide():
+def hide():#hide part
     window = win32console.GetConsoleWindow()
     win32gui.ShowWindow(window,0)
     return True
 
 hide()
-
-
-
 
 
 
